@@ -3,7 +3,7 @@ import React from 'react'
 const Footer = () => {
     return (
         <div>
-            Footer
+            2021 Andrey Yablokov
         </div>
     )
 }
