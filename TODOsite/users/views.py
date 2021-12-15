@@ -23,13 +23,13 @@ class UserViewSet(ViewSet):
     def update(self, request, pk=None):
         user = get_object_or_404(User, pk=pk)
         serializer = UserModelSerializer(user, data=request.data)
-        serializer.is_valid()
+        serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
 
     def partial_update(self, request, pk=None):
         user = get_object_or_404(User, pk=pk)
         serializer = UserModelSerializer(instance=user, data=request.data, partial=True)
-        serializer.is_valid()
+        serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
