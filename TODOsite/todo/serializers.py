@@ -6,7 +6,7 @@ from users.serializers import UserModelSerializer
 
 
 class ProjectModelSerializer(ModelSerializer):
-    users = UserModelSerializer(many=True)
+    # users = UserModelSerializer(many=True)
 
     class Meta:
         model = Project
@@ -14,8 +14,8 @@ class ProjectModelSerializer(ModelSerializer):
 
 
 class ToDoModelSerializer(ModelSerializer):
-    project = ProjectModelSerializer()
-    user = UserModelSerializer()
+    # project = ProjectModelSerializer()
+    # user = UserModelSerializer()
 
     class Meta:
         model = ToDo
