@@ -1,13 +1,13 @@
 import React from 'react';
 import axios from 'axios';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {BrowserRouter, Routes, Route, Link} from 'react-router-dom';
 
 import UserList from './components/UserList.js';
 import ProjectList from './components/ProjectList.js';
 import ToDosList from './components/ToDosList.js';
 import Menu from './components/Menu.js';
 import Footer from './components/Footer.js';
-
+import NoMatch from './components/NoMatch.js';
 
 class App extends React.Component {
     constructor (props) {
@@ -54,12 +54,14 @@ class App extends React.Component {
     render () {
         return (
             <div>
-                <Menu />
                 <BrowserRouter>
+                    <Menu />
                     <Routes>
-                        <Route path='/' element={<UserList users={this.state.users} />}  />
+                        <Route path='/' />
+                        <Route path='/users' element={<UserList users={this.state.users} />}  />
                         <Route path='/projects' element={<ProjectList projects={this.state.projects} />}  />
                         <Route path='/todos' element={<ToDosList todos={this.state.todos} />}  />
+                        <Route path="*" element={<NoMatch />} />
                     </Routes>
                 </BrowserRouter>
                 <Footer />
