@@ -5,6 +5,7 @@ import {BrowserRouter, Routes, Route, Link} from 'react-router-dom';
 import UserList from './components/UserList.js';
 import ProjectList from './components/ProjectList.js';
 import ToDosList from './components/ToDosList.js';
+import ProjectToDosList from './components/ProjectToDosList.js';
 import Menu from './components/Menu.js';
 import Footer from './components/Footer.js';
 import NoMatch from './components/NoMatch.js';
@@ -61,7 +62,7 @@ class App extends React.Component {
                         <Route path='/users' element={<UserList users={this.state.users} />}  />
                         <Route path='/projects' element={<ProjectList projects={this.state.projects} />}  />
                         <Route path='/todos' element={<ToDosList todos={this.state.todos} />}  />
-                        <Route path="/projects/:id" element={<ProjectList projects={this.state.projects} />} />
+                        <Route path="/projects/id/:id" element={<ProjectToDosList todos={this.state.todos} projects = {this.state.projects} />} />
                         <Route path="*" element={<NoMatch />} />
                     </Routes>
                 </BrowserRouter>
