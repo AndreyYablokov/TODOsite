@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 const ToDoItem = ({todo}) => {
     return (
         <tr>
@@ -17,7 +16,7 @@ const ToDoItem = ({todo}) => {
                 {todo.updatedTimestamp}
             </td>
             <td>
-                {todo.isActive}
+                {todo.isActive ? 'Нет': 'Да'}
             </td>
             <td>
                 {todo.project}
@@ -36,7 +35,7 @@ const ToDosList = ({todos}) => {
             <th>Описание</th>
             <th>Время создания</th>
             <th>Время обновления</th>
-            <th>Активен</th>
+            <th>Завершено</th>
             <th>Проект</th>
             <th>Пользователь</th>
 

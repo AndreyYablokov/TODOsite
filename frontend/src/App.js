@@ -61,6 +61,7 @@ class App extends React.Component {
                         <Route path='/users' element={<UserList users={this.state.users} />}  />
                         <Route path='/projects' element={<ProjectList projects={this.state.projects} />}  />
                         <Route path='/todos' element={<ToDosList todos={this.state.todos} />}  />
+                        <Route path="/projects/:id" element={<ProjectList projects={this.state.projects} />} />
                         <Route path="*" element={<NoMatch />} />
                     </Routes>
                 </BrowserRouter>
