@@ -8,6 +8,7 @@ from rest_framework import mixins
 
 from users.models import User
 from users.serializers import UserModelSerializer
+from users.filters import UserFilter
 
 
 class UserViewSet(GenericViewSet,
@@ -16,6 +17,7 @@ class UserViewSet(GenericViewSet,
                   mixins.UpdateModelMixin):
     queryset = User.objects.all()
     serializer_class = UserModelSerializer
+    filterset_class = UserFilter
 
 
 # class UserViewSet(ViewSet):
