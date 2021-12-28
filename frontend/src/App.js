@@ -9,6 +9,7 @@ import ProjectToDosList from './components/ProjectToDosList.js';
 import Menu from './components/Menu.js';
 import Footer from './components/Footer.js';
 import NoMatch from './components/NoMatch.js';
+import LoginForm from './components/LoginForm.js';
 
 class App extends React.Component {
     constructor (props) {
@@ -63,6 +64,7 @@ class App extends React.Component {
                         <Route path='/projects' element={<ProjectList projects={this.state.projects} />}  />
                         <Route path='/todos' element={<ToDosList todos={this.state.todos} />}  />
                         <Route path="/projects/id/:id" element={<ProjectToDosList todos={this.state.todos} projects = {this.state.projects} />} />
+                        <Route path='/login' element={<LoginForm/>}  />
                         <Route path="*" element={<NoMatch />} />
                     </Routes>
                 </BrowserRouter>
