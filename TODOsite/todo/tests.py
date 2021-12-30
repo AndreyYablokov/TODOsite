@@ -16,7 +16,7 @@ class TestToDoModelViewSet(APITestCase):
         response = self.client.get('/api/todos/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-    def test_create_mixer(self):
+    def test_partial_update_mixer(self):
         self.client.login(username='root', password='admin123456')
         response = self.client.patch(f'/api/todos/{self.todo.id}/', {'task': 'Выполнить рефакторинг кода'},
                                      format='json')
