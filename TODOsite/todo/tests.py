@@ -1,12 +1,15 @@
-from mixer.backend.django import mixer
-from rest_framework.test import APITestCase
+from rest_framework.test import APITestCase, APILiveServerTestCase
 from rest_framework import status
+from rest_framework.test import RequestsClient
+
+from mixer.backend.django import mixer
+from requests.auth import HTTPBasicAuth
 
 from users.models import User
-from todo.models import ToDo
+from todo.models import ToDo, Project
 
 
-class TestToDoModelViewSet(APITestCase):
+class TestToDoAPI(APITestCase):
 
     def setUp(self):
         self.admin = User.objects.create_superuser('root', 'root@TODOsite.ru', 'admin123456')
@@ -23,3 +26,13 @@ class TestToDoModelViewSet(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         response = self.client.get(f'/api/todos/{self.todo.id}/')
         self.assertEqual(response.data['task'], 'Выполнить рефакторинг кода')
+
+
+class LiveTestProjectAPI(APITestCase):
+
+    def setUp(self):
+        self.client = RequestsClient()
+
+    def test_get_list_guest(self):
+        response = self.client.get('http://127.0.0.1:8000/api/projects/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
