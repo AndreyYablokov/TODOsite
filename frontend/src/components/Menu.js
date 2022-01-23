@@ -20,7 +20,9 @@ class Menu extends React.Component {
                             <Link to='/users'>Users</Link>
                         </li>
                         <li>
-                            <Link to='/projects'>Projects</Link>
+                            <Link to='/projects'>
+                                <button onClick={()=>this.props.clearFilteredProjects()}>Projects</button>
+                            </Link>
                         </li>
                         <li>
                             <Link to='/todos'>ToDo</Link>

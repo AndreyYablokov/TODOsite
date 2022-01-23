@@ -1,7 +1,7 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
-const ToDoItem = ({todo}) => {
+const ToDoItem = ({todo, deleteToDo}) => {
     return (
         <tr>
             <td>
@@ -22,24 +22,30 @@ const ToDoItem = ({todo}) => {
             <td>
                 {todo.user}
             </td>
+            <td>
+                {todo.isActive ? <button onClick={()=>deleteToDo(todo.id)} type='button'>Завершить</button>: ''}
+            </td>
         </tr>
     )
 }
 
-const ProjectToDosList = ({todos}) => {
+const ProjectToDosList = ({todos, deleteToDo}) => {
     let { id } = useParams();
     let filteredTodos = todos.filter((todo) => todo.project === parseInt(id));
     return (
-        <table>
-            <th>Задача</th>
-            <th>Описание</th>
-            <th>Время создания</th>
-            <th>Время обновления</th>
-            <th>Завершено</th>
-            <th>Пользователь</th>
+        <div>
+            <table>
+                <th>Задача</th>
+                <th>Описание</th>
+                <th>Время создания</th>
+                <th>Время обновления</th>
+                <th>Завершено</th>
+                <th>Пользователь</th>
 
-            {filteredTodos.map((todo) => <ToDoItem todo={todo} />)}
-        </table>
+                {filteredTodos.map((todo) => <ToDoItem todo={todo} deleteToDo={deleteToDo} />)}
+            </table>
+            <Link to='/todos/create'>Создать</Link>
+        </div>
     )
 }
 
