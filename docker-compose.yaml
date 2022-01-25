@@ -1,0 +1,42 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres:13.5
+    privileged: true
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: qwerty
+      POSTGRES_DB: TODOsite
+
+  backend:
+    build: ./TODOsite
+    privileged: true
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    environment:
+      DJANGO_SETTINGS_MODULE: 'TODOsite.settings.prod'
+    command: bash -c "
+      python manage.py migrate &&
+      gunicorn TODOsite.wsgi -b 0.0.0.0:8080"
+
+  nginx:
+    build: ./nginx
+    privileged: true
+    ports:
+      - 8000:80
+    depends_on:
+      - backend
+
+  frontend:
+    build: ./frontend
+    privileged: true
+    ports:
+      - 80:80
+    depends_on:
+      - nginx
